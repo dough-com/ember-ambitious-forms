@@ -8,7 +8,7 @@ export default Ember.Component.extend(ConvertedOptions, {
   layoutName: 'ember-ambitious-forms@components/amb-form-field',
   service: Ember.inject.service('ember-ambitious-forms'),
 
-  tagName: 'label',
+  tagName: 'div',
   classNames: ['amb-form-field'],
   classNameBindings: ['readOnly:amb-form-field-read-only', '_errorStateClass'],
 
