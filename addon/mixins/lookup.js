@@ -47,8 +47,13 @@ export default Ember.Mixin.create({
 
   label: Ember.computed('_lookupCache', 'lookupArguments', 'lookupKey', function () {
     let key = this.get('lookupKey')
-    if (key) {
+    if (key && this._lookupExists(key)) {
       return this._lookup(key, this.get('lookupArguments'))
+    } else {
+      // Translation key for labels is normally 'amb-form.path/to/component.property-name'
+      // This lets select inputs list options translations and the label translation
+      // ex: 'amb-form.path/to/component': { 'property-name': { 'options' { 'option-one': 'Option Translation' }, 'label': 'Label Translation' } }
+      return this._lookup(`${key}.label`, this.get('lookupArguments'))
     }
   }),
 
@@ -72,7 +77,6 @@ export default Ember.Mixin.create({
       let valueKey = this.lookupKeyConvert(value.toString())
 
       let option = { value }
-
       if (this._lookupExists(`${lookupOptionsKey}.${valueKey}`)) {
         option.text = this._lookup(`${lookupOptionsKey}.${valueKey}`)
       }
