@@ -115,6 +115,8 @@ export default Ember.Component.extend(ConvertedOptions, {
     }
   }),
 
+  serializationKey: Ember.computed.reads('fieldKey'),
+
   formattedValue: Ember.computed('value', function () {
     let formatter = this.get('formatter')
     return formatter.call(this, this.get('value'))
