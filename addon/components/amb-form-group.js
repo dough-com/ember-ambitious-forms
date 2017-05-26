@@ -46,6 +46,15 @@ export default Ember.Component.extend({
     this.get('fields').forEach((field, _index, _enum) => field.resetErrorState())
   },
 
+  serialize() {
+    let formData = {}
+    this.get('fields').forEach((field, _index, _enum) => {
+      let key = field.get('serializationKey')
+      formData[key] = field.get('value')
+    })
+    return formData
+  },
+
   actions: {
     insertField (component) {
       this.get('_toInsert').push(component)
