@@ -1,5 +1,5 @@
 import Ember from 'ember'
-
+import { on } from 'ember-computed-decorators'
 import ConvertedOptions from '../mixins/converted-options'
 
 // TODO: what about when value is not in the list of options?
@@ -15,6 +15,14 @@ export default Ember.Component.extend(ConvertedOptions, {
   isOptionSelected: Ember.computed.notEmpty('value'),
 
   prompt: Ember.computed.oneWay('service.config.prompt'),
+
+  @on('init')
+  optionsChanged () {
+    if (this.get('convertedOptions.length') === 1) {
+      this.selectConvertedOption(this.get('convertedOptions.firstObject'))
+    }
+  },
+
   actions: {
     selectChange (domSelect) {
       let selectedIndex = domSelect.selectedIndex
