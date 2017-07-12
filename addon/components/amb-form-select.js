@@ -1,5 +1,4 @@
 import Ember from 'ember'
-import { on } from 'ember-computed-decorators'
 import ConvertedOptions from '../mixins/converted-options'
 
 // TODO: what about when value is not in the list of options?
@@ -16,8 +15,8 @@ export default Ember.Component.extend(ConvertedOptions, {
 
   prompt: Ember.computed.oneWay('service.config.prompt'),
 
-  @on('init')
-  optionsChanged () {
+  init () {
+    this._super(...arguments)
     if (this.get('convertedOptions.length') === 1) {
       this.selectConvertedOption(this.get('convertedOptions.firstObject'))
     }
