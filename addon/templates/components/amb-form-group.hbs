@@ -8,5 +8,7 @@
           group=(component 'amb-form-group' classNames='amb-form-group' scope=scope readOnly=readOnly alwaysShowErrors=alwaysShowErrors onInsertField=(action 'insertField') onRemoveField=(action 'removeField'))
         ) as |h|}}
   {{amb-form-hash-set h 'group-each' (component 'amb-form-group-each' parent=h)}}
-  {{yield h}}
+  <fieldset disabled={{disabled}}>
+    {{yield h}}
+  </fieldset>
 {{/with}}

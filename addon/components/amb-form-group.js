@@ -5,7 +5,7 @@ import ErrorState from '../utils/error-state'
 export default Ember.Component.extend({
   layoutName: 'ember-ambitious-forms@components/amb-form-group',
   classNames: 'amb-form-group',
-
+  disabled: false,
   fields: Ember.computed(() => Ember.A()),
   fieldsWithErrors: Ember.computed.alias('errorState.contentWithErrors'),
 
